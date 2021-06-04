@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -25,5 +26,6 @@ public class Member {
     private Address address;
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
     private List<Order> orders = new ArrayList<>();
 }
