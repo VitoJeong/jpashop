@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain.item;
 
+import jpabook.jpashop.controller.ItemForm;
 import jpabook.jpashop.domain.Category;
 import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Data;
@@ -50,6 +51,14 @@ public abstract class Item {
             throw new NotEnoughStockException("Stock is not enough!");
         }
         this.stockQuantity = restStock;
+    }
+
+    public Item updateItem(ItemForm form) {
+        this.setName(form.getName());
+        this.setPrice(form.getPrice());
+        this.setStockQuantity(form.getStockQuantity());
+
+        return this;
     }
 
 }
