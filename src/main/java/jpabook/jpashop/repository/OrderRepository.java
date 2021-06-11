@@ -23,10 +23,10 @@ public class OrderRepository {
 
     public List<Order> findAll(OrderSearch orderSearch) {
         return em.createQuery("SELECT o FROM Order o JOIN o.member m " +
-                "WHERE o.status = :status" +
+                "WHERE (:status IS NULL OR o.status = :status)" +
                 "   AND m.name LIKE :name", Order.class)
                 .setParameter("status", orderSearch.getOrderStatus())
-                .setParameter("name", orderSearch.getMemberName())
+                .setParameter("name","%" + orderSearch.getMemberName() + "%")
                 .setMaxResults(1000) // 최대 1000건
                 .getResultList();
     }
