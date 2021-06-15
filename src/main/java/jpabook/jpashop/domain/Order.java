@@ -1,10 +1,7 @@
 package jpabook.jpashop.domain;
 
 import jpabook.jpashop.domain.Member;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +22,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 

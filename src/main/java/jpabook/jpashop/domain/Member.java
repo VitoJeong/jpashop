@@ -1,6 +1,9 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -14,7 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter @Setter
+@ToString(exclude = {"orders"})
 public class Member {
 
     @Id @GeneratedValue
@@ -26,7 +30,7 @@ public class Member {
     @Embedded
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
-    @ToString.Exclude
     private List<Order> orders = new ArrayList<>();
 }
