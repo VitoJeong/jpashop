@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.domain.Member;
 import lombok.*;
 
@@ -32,16 +33,13 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    @ToString.Exclude
     private Member member;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    @ToString.Exclude
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
-    @ToString.Exclude
     private Delivery delivery;
 
     private LocalDateTime orderDate;
