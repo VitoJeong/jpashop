@@ -1,7 +1,5 @@
 package jpabook.jpashop.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jpabook.jpashop.domain.Member;
 import lombok.*;
 
 import javax.persistence.CascadeType;
