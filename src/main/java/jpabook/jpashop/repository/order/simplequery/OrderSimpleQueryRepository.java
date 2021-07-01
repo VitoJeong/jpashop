@@ -10,8 +10,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderSimpleQueryRepository {
 
+    // 특정 api에 종속적인 repository를 분리
     private final EntityManager em;
-
 
     public List<OrderSimpleQueryDTO> findOrderDtos() {
         return em.createQuery("SELECT new jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDTO(o.id, m.name, o.orderDate, o.status, d.address) " +

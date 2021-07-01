@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,6 +34,7 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @BatchSize(size = 200) // 컬렉션 조회 최적화 - size만큼 데이터 조회(in 쿼리)
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 

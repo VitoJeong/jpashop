@@ -7,6 +7,7 @@ import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.Collection;
 import java.util.List;
 
 @Repository
@@ -51,5 +52,14 @@ public class OrderRepository {
                 "JOIN FETCH oi.item i", Order.class).getResultList();
         
         // 컬렉션 페치 조인 -> 페이징 X(메모리에서 페이징 - 위험), 1개만 사용(뻥튀기문제)
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery("SELECT o FROM Order o " +
+                "JOIN FETCH o.member m " +
+                "JOIN FETCH o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
     }
 }
