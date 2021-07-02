@@ -49,6 +49,7 @@ public class OrderSimpleApiController {
         return orders.stream().map(SimpleOrderDTO::new)
                 .collect(Collectors.toList());
     }
+
     @GetMapping("/api/v4/simple-orders")
     public List<OrderSimpleQueryDTO> ordersV4() {
         // JPQL 생성자를 통해 원한는 값을 선택해서 조회
